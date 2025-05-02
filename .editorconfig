@@ -1,0 +1,9 @@
+[*.lua]
+indent_style = space
+indent_size = 2
+[*.zon]
+indent_style = space
+indent_size = 2
+[*.zig]
+indent_style = space
+indent_size = 2
