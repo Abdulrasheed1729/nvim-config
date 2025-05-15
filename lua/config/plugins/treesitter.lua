@@ -8,7 +8,9 @@ return {
       install.compilers = { "zig" }
 
       configs.setup({
-        ensure_installed = { "c", "dart", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "zig" },
+        ensure_installed = { "c", "python", "dart", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript",
+          "html", "zig",
+        },
         sync_install = false,
         highlight = {
           enable = true,

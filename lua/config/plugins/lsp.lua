@@ -65,6 +65,9 @@ return {
         end,
       })
 
+      -- Python setup
+      lspconfig.ruff.setup {}
+
 
       -- Zig Language Server Set up
       lspconfig.zls.setup {}
