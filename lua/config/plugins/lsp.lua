@@ -30,9 +30,11 @@ return {
       },
       -- Support for dart hot-reload on save
       { "RobertBrunhage/dart-tools.nvim" },
+      { 'saghen/blink.cmp' },
     },
     config = function()
       local lspconfig = require("lspconfig")
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 
       require("mason").setup()
@@ -47,7 +49,8 @@ return {
 
 
       -- Lua Set up
-      lspconfig.lua_ls.setup {}
+      lspconfig.lua_ls.setup {
+        capabilities = capabilities }
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('my.lsp', {}),
         callback = function(args)
@@ -66,13 +69,13 @@ return {
       })
 
       -- Python setup
-      lspconfig.ruff.setup {}
+      lspconfig.ruff.setup { capabilities = capabilities }
 
 
       -- Zig Language Server Set up
-      lspconfig.zls.setup {}
+      lspconfig.zls.setup { capabilities = capabilities }
 
-      vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end)
+      vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, { desc = '[F]ormat current buffer' })
       -- vim.lsp.enable('dartls')
 
       -- Dart Set up
@@ -85,6 +88,8 @@ return {
 
 
       lspconfig.dartls.setup {
+        capabilities = capabilities,
+
         cmd = {
           "dart",
           "language-server",

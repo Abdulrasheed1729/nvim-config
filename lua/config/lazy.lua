@@ -7,7 +7,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -25,13 +25,13 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-	{ "folke/tokyonight.nvim", config = function() vim.cmd.colorscheme "tokyonight" end },
+    { "folke/tokyonight.nvim",  config = function() vim.cmd.colorscheme "tokyonight-day" end },
     -- import your plugins
-   { import = "config.plugins" },
+    { import = "config.plugins" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
---  install = { colorscheme = { "habamax" } },
+  --  install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
---  checker = { enabled = true },
+  --  checker = { enabled = true },
 })
