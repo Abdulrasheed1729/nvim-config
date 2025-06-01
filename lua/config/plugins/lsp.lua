@@ -30,35 +30,37 @@ return {
       },
       -- Support for dart hot-reload on save
       { "RobertBrunhage/dart-tools.nvim" },
-      { 'saghen/blink.cmp' },
+      { "saghen/blink.cmp" },
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       require("mason").setup()
-
 
       require("mason-lspconfig").setup({
         ensure_installed = {
           -- dart sdk ships with LSP
           "lua_ls",
+          "zls",
+          "pyright",
         },
       })
 
-
       -- Lua Set up
-      lspconfig.lua_ls.setup {
-        capabilities = capabilities }
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('my.lsp', {}),
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("my.lsp", {}),
         callback = function(args)
           local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-          if not client then return end
+          if not client then
+            return
+          end
 
-          if client:supports_method('textDocument/formatting') then
-            vim.api.nvim_create_autocmd('BufWritePre', {
+          if client:supports_method("textDocument/formatting") then
+            vim.api.nvim_create_autocmd("BufWritePre", {
               buffer = args.buf,
               callback = function()
                 vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
@@ -69,13 +71,14 @@ return {
       })
 
       -- Python setup
-      lspconfig.ruff.setup { capabilities = capabilities }
-
+      lspconfig.pyright.setup({ capabilities = capabilities })
 
       -- Zig Language Server Set up
-      lspconfig.zls.setup { capabilities = capabilities }
+      lspconfig.zls.setup({ capabilities = capabilities })
 
-      vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, { desc = '[F]ormat current buffer' })
+      vim.keymap.set("n", "<space>f", function()
+        vim.lsp.buf.format()
+      end, { desc = "[F]ormat current buffer" })
       -- vim.lsp.enable('dartls')
 
       -- Dart Set up
@@ -86,8 +89,7 @@ return {
         vim.fn.expand("$HOME/tools/flutter/"),
       }
 
-
-      lspconfig.dartls.setup {
+      lspconfig.dartls.setup({
         capabilities = capabilities,
 
         cmd = {
@@ -109,9 +111,9 @@ return {
             updateImportsOnRename = true,
             completeFunctionCalls = true,
             showTodos = true,
-          }
-        }
-      }
+          },
+        },
+      })
     end,
-  }
+  },
 }
