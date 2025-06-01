@@ -44,6 +44,7 @@ return {
         ensure_installed = {
           -- dart sdk ships with LSP
           "lua_ls",
+          "clangd",
         },
       })
 
@@ -70,6 +71,9 @@ return {
 
       -- Python setup
       lspconfig.ruff.setup { capabilities = capabilities }
+
+      -- Clangd setup
+      lspconfig.clangd.setup { capabilities = capabilities }
 
 
       -- Zig Language Server Set up
