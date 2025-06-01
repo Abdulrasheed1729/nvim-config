@@ -44,6 +44,7 @@ return {
           "lua_ls",
           "zls",
           "pyright",
+          "clangd",
         },
       })
 
@@ -72,6 +73,8 @@ return {
 
       -- Python setup
       lspconfig.pyright.setup({ capabilities = capabilities })
+      -- Clangd setup
+      lspconfig.clangd.setup { capabilities = capabilities }
 
       -- Zig Language Server Set up
       lspconfig.zls.setup({ capabilities = capabilities })
