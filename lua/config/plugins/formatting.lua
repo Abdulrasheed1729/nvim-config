@@ -5,6 +5,26 @@ return {
     local conform = require("conform")
 
     conform.setup({
+      formatters = {
+        ziggy = {
+          inherit = false,
+          command = "ziggy",
+          stdin = true,
+          args = { "fmt", "--stdin" },
+        },
+        ziggy_schema = {
+          inherit = false,
+          command = "ziggy",
+          stdin = true,
+          args = { "fmt", "--stdin-schema" },
+        },
+        superhtml = {
+          inherit = false,
+          command = "superhtml",
+          stdin = true,
+          args = { "fmt", "--stdin-super" },
+        },
+      },
       formatters_by_ft = {
         javascript = { "prettier" },
         typescript = { "prettier" },
@@ -18,6 +38,9 @@ return {
         liquid = { "prettier" },
         lua = { "stylua" },
         python = { "black" },
+        ziggy = { "ziggy" },
+        ziggy_schema = { "ziggy_schema" },
+        superhtml = { "superhtml" },
       },
       format_on_save = {
         lsp_fallback = true,
