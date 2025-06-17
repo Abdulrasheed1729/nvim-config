@@ -48,6 +48,10 @@ return {
         },
       })
 
+      -- XML Set up
+      lspconfig.lemminx.setup({
+        capabilities = capabilities,
+      })
       -- Lua Set up
       lspconfig.lua_ls.setup({
         capabilities = capabilities,

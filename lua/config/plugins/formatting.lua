@@ -41,6 +41,7 @@ return {
         ziggy = { "ziggy" },
         ziggy_schema = { "ziggy_schema" },
         superhtml = { "superhtml" },
+        xml = { "xmlformatter" }
       },
       format_on_save = {
         lsp_fallback = true,
