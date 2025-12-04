@@ -10,11 +10,11 @@ return -- NOTE: Plugins can specify dependencies.
   dependencies = {
     "nvim-lua/plenary.nvim",
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
-      "Abdulrasheed1729/telescope-fzf-native.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
 
       -- `build` is used to run some command when the plugin is installed/updated.
       -- This is only run then, not every time Neovim starts up.
-      build = "zig build",
+      build = "make",
 
       -- `cond` is a condition used to determine whether this plugin should be
       -- installed and loaded.
@@ -107,4 +107,3 @@ return -- NOTE: Plugins can specify dependencies.
     end, { desc = "[S]earch [N]eovim files" })
   end,
 }
-
