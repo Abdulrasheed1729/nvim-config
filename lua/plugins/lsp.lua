@@ -213,6 +213,7 @@ return {
       -- ts_ls = {},
       --
       tinymist = {},
+      astro = {},
 
       lua_ls = {
         -- cmd = { ... },
@@ -252,7 +253,9 @@ return {
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
     require("mason-lspconfig").setup({
-      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+      ensure_installed = {
+        "astro",
+      }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
       automatic_installation = false,
       handlers = {
         function(server_name)
@@ -266,6 +269,7 @@ return {
       },
     })
     -- local lspconfig = require("lspconfig")
+
     -- -- Dart Set up
     -- local dartExcludedFolders = {
     --   vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
