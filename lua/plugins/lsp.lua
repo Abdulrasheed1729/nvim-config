@@ -214,6 +214,7 @@ return {
       --
       tinymist = {},
       astro = {},
+      zls = {},
 
       lua_ls = {
         -- cmd = { ... },
@@ -249,6 +250,7 @@ return {
       "stylua", -- Used to format Lua code
       "prettier",
       "clang-format",
+      "ruff",
     })
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

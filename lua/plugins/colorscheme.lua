@@ -17,7 +17,9 @@ return { -- You can easily change to a different colorscheme.
     -- Load the colorscheme here.
     -- Like many other themes, this one has different styles, and you could load
     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    require("oasis").setup()
+    require("oasis").setup({
+      transparent = true,
+    })
     vim.cmd.colorscheme("oasis-desert")
   end,
 }
