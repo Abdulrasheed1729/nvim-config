@@ -270,8 +270,7 @@ return {
         end,
       },
     })
-    require("lspconfig").dafny.setup({})
-    -- local lspconfig = require("lspconfig")
+    vim.lsp.enable("dafny") -- local lspconfig = require("lspconfig")
 
     -- -- Dart Set up
     -- local dartExcludedFolders = {
