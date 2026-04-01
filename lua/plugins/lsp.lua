@@ -270,6 +270,7 @@ return {
         end,
       },
     })
+    require("lspconfig").dafny.setup({})
     -- local lspconfig = require("lspconfig")
 
     -- -- Dart Set up
