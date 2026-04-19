@@ -223,4 +223,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
+-- Plugins
+
+vim.pack.add({
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/rebelot/kanagawa.nvim",
+})
+
+-- Kanagawa
+require("kanagawa").setup({})
+vim.cmd("colorscheme kanagawa-wave")
+
+
 require("config.lazy")
+require("vim._core.ui2").enable({
+  enable = true,
+  msg = {
+    target = "cmd",
+    pager = { height = 0.5 },
+    dialog = { height = 0.5 },
+    cmd = { height = 0.5 },
+    msg = { height = 0.5, timeout = 4500 },
+  },
+})
