@@ -1,6 +1,10 @@
 vim.bo.syntax = ""
 vim.bo.textwidth = 100
 -- vim.opt_local.spell = true
+local function map(mode, lhs, rhs, opts)
+  opts = opts or {}
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
 
 map("n", "<leader>dd", "<Cmd>FlutterDevices<CR>", { desc = "flutter: devices", buffer = 0 })
 map("n", "<leader>de", "<Cmd>FlutterEmulators<CR>", { desc = "flutter: emulators", buffer = 0 })
