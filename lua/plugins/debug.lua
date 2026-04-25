@@ -17,6 +17,9 @@ return {
     -- Required dependency for nvim-dap-ui
     "nvim-neotest/nvim-nio",
 
+    -- Required dependency for nvim-dap-virtual-text
+    "theHamsta/nvim-dap-virtual-text",
+
     -- Installs the debug adapters for you
     "mason-org/mason.nvim",
     "jay-babu/mason-nvim-dap.nvim",
@@ -60,6 +63,20 @@ return {
         require("dap").toggle_breakpoint()
       end,
       desc = "Debug: Toggle Breakpoint",
+    },
+    {
+      "<leader>gb",
+      function()
+        require("dap").run_to_cursor()
+      end,
+      desc = "Debug: Run to cursor",
+    },
+    {
+      "<leader>?",
+      function()
+        require("dapui").eval(nil, { enter = true })
+      end,
+      desc = "Debug: Inspect the value of the expression under the cursor",
     },
     {
       "<leader>B",
@@ -121,16 +138,28 @@ return {
     })
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, "DapBreak", { fg = "#e51400" })
+    vim.api.nvim_set_hl(0, "DapStop", { fg = "#ffcc00" })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and {
+          Breakpoint = "",
+          BreakpointCondition = "",
+          BreakpointRejected = "",
+          LogPoint = "",
+          Stopped = "",
+        }
+      or {
+        Breakpoint = "●",
+        BreakpointCondition = "⊜",
+        BreakpointRejected = "⊘",
+        LogPoint = "◆",
+        Stopped = "⭔",
+      }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = "Dap" .. type
+      local hl = (type == "Stopped") and "DapStop" or "DapBreak"
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized["dapui_config"] = dapui.open
     dap.listeners.before.event_terminated["dapui_config"] = dapui.close
@@ -145,60 +174,13 @@ return {
       },
     })
 
-    -- local get_dart_path = function()
-    --   if vim.fn.has("win32") then
-    --     return "$HOME/dev/flutter/bin/cache/dart-sdk/bin/"
-    --   else
-    --     return "$HOME/dev/flutter/bin/cache/dart-sdk/bin/"
-    --   end
-    -- end
-    --
-    -- local get_flutter_path = function()
-    --   if vim.fn.has("win32") then
-    --     return "~/dev/flutter/bin/"
-    --   else
-    --     return "$HOME/dev/flutter/bin/"
-    --   end
-    -- end
-    -- dap.adapters.dart = {
-    --   type = "executable",
-    --   command = "dart.exe", -- if you're using fvm, you'll need to provide the full path to dart (dart.exe for windows users), or you could prepend the fvm command
-    --   args = { "debug_adapter" },
-    --   -- windows users will need to set 'detached' to false
-    --   options = {
-    --     detached = false,
-    --   },
-    -- }
-    -- dap.adapters.flutter = {
-    --   type = "executable",
-    --   -- command = get_flutter_path(), -- if you're using fvm, you'll need to provide the full path to flutter (flutter.bat for windows users), or you could prepend the fvm command
-    --   command = "flutter.bat",
-    --   args = { "debug-adapter" },
-    --   -- windows users will need to set 'detached' to false
-    --   options = {
-    --     detached = false,
-    --   },
-    -- }
-    --
-    -- dap.configurations.dart = {
-    --   {
-    --     type = "dart",
-    --     request = "launch",
-    --     name = "Launch dart",
-    --     dartSdkPath = get_dart_path(), -- ensure this is correct
-    --     flutterSdkPath = get_flutter_path(), -- ensure this is correct
-    --     program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
-    --     cwd = "${workspaceFolder}",
-    --   },
-    --   {
-    --     type = "flutter",
-    --     request = "launch",
-    --     name = "Launch flutter",
-    --     dartSdkPath = get_dart_path(), -- ensure this is correct
-    --     flutterSdkPath = get_flutter_path(), -- ensure this is correct
-    --     program = "${workspaceFolder}/lib/main.dart", -- ensure this is correct
-    --     cwd = "${workspaceFolder}",
-    --   },
-    -- }
+    require("dap").adapters.codelldb = {
+      type = "server",
+      port = "${port}",
+      executable = {
+        command = "codelldb",
+        args = { "--port", "${port}" },
+      },
+    }
   end,
 }

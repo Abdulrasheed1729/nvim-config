@@ -226,7 +226,7 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- Plugins
 
 vim.pack.add({
-  "https://github.com/nvim-treesitter/nvim-treesitter",
+  -- "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/rebelot/kanagawa.nvim",
 })
 
@@ -234,6 +234,10 @@ vim.pack.add({
 require("kanagawa").setup({})
 vim.cmd("colorscheme kanagawa-wave")
 
+-- Oil
+vim.keymap.set("n", "<leader>oh", function()
+  require("oil.actions").toggle_hidden.callback()
+end, { desc = "Toggle [O]il [H]idden files" })
 
 require("config.lazy")
 require("vim._core.ui2").enable({
