@@ -1,4 +1,5 @@
-# 💤 LazyVim
+# 💤 Rasheed's Neovim settings
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+- Built for the kickstart.nvim(thaknks to TJ)
+- Built not to work on your machine 🫵
+
