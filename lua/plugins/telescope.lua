@@ -1,10 +1,13 @@
+-- HACK: this is for the time being since I don't want to use the mgwin on windows
+-- I will keep using the fff.nvim with windows for now :)
+local is_windows = vim.loop.os_uname().sysname == "Windows"
 return -- NOTE: Plugins can specify dependencies.
---
--- The dependencies are proper plugin specifications as well - anything
--- you do for a plugin at the top level, you can do for a dependency.
---
--- Use the `dependencies` key to specify the dependencies of a particular plugin
-{ -- Fuzzy Finder (files, lsp, etc)
+  --
+  -- The dependencies are proper plugin specifications as well - anything
+  -- you do for a plugin at the top level, you can do for a dependency.
+  --
+  -- Use the `dependencies` key to specify the dependencies of a particular plugin
+  is_windows and {} or { -- Fuzzy Finder (files, lsp, etc)
   "nvim-telescope/telescope.nvim",
   event = "VimEnter",
   dependencies = {
