@@ -1,6 +1,6 @@
 -- HACK: this is for the time being since I don't want to use the mgwin on windows
 -- I will keep using the fff.nvim with windows for now :)
-local is_windows = vim.loop.os_uname().sysname == "Windows"
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 return -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
