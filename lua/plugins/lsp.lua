@@ -272,6 +272,10 @@ return {
     })
     vim.lsp.enable("dafny") -- local lspconfig = require("lspconfig")
 
+    vim.lsp.enable("hls", {
+      filetypes = { "haskell", "lhaskell", "cabal" },
+    })
+
     -- -- Dart Set up
     -- local dartExcludedFolders = {
     --   vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
