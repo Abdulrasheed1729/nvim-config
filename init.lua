@@ -142,14 +142,13 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- Plugins
 
-vim.pack.add({
-  -- "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/rebelot/kanagawa.nvim",
-})
+-- vim.pack.add({
+--   -- "https://github.com/nvim-treesitter/nvim-treesitter",
+-- })
 
--- Kanagawa
-require("kanagawa").setup({})
-vim.cmd("colorscheme vim")
+-- HACK: this is for minischeme colour scheme to work
+vim.cmd("packadd mini.nvim")
+vim.cmd("colorscheme minischeme")
 
 -- Oil
 vim.keymap.set("n", "<leader>oh", function()
