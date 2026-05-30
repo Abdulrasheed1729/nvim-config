@@ -146,10 +146,6 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 --   -- "https://github.com/nvim-treesitter/nvim-treesitter",
 -- })
 
--- HACK: this is for minischeme colour scheme to work
-vim.cmd("packadd mini.nvim")
-vim.cmd("colorscheme minischeme")
-
 -- Oil
 vim.keymap.set("n", "<leader>oh", function()
   require("oil.actions").toggle_hidden.callback()
