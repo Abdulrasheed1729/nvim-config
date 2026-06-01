@@ -17,6 +17,7 @@ return { -- Highlight, edit, and navigate code
       "cmake",
       "toml",
       "json",
+      "latex",
     }
     local alreadyInstalled = require("nvim-treesitter.config").get_installed()
     local parsersToInstall = vim

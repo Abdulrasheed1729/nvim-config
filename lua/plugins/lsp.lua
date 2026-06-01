@@ -272,42 +272,10 @@ return {
     })
     vim.lsp.enable("dafny") -- local lspconfig = require("lspconfig")
 
+    vim.lsp.enable("texlab")
+
     vim.lsp.enable("hls", {
       filetypes = { "haskell", "lhaskell", "cabal" },
     })
-
-    -- -- Dart Set up
-    -- local dartExcludedFolders = {
-    --   vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
-    --   vim.fn.expand("$HOME/.pub-cache"),
-    --   vim.fn.expand("/opt/homebrew/"),
-    --   vim.fn.expand("$HOME/tools/flutter/"),
-    -- }
-    --
-    -- lspconfig.dartls.setup({
-    --   capabilities = capabilities,
-    --
-    --   cmd = {
-    --     "dart",
-    --     "language-server",
-    --     "--protocol=lsp",
-    --   },
-    --   filetypes = { "dart" },
-    --   init_options = {
-    --     onlyAnalyzeProjectsWithOpenFiles = false,
-    --     suggestFromUnimportedLibraries = true,
-    --     closingLabels = true,
-    --     outline = true,
-    --     flutterOutline = true,
-    --   },
-    --   settings = {
-    --     dart = {
-    --       analysisExcludedFolders = dartExcludedFolders,
-    --       updateImportsOnRename = true,
-    --       completeFunctionCalls = true,
-    --       showTodos = true,
-    --     },
-    --   },
-    -- })
   end,
 }
