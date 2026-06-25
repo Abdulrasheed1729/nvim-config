@@ -15,6 +15,7 @@ return { -- Highlight, edit, and navigate code
       "rust",
       "zig",
       "cmake",
+      "odin",
       "toml",
       "json",
       "latex",
